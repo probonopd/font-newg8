@@ -1,4 +1,8 @@
-# NewG8 [![Build Status](https://travis-ci.com/probonopd/font-garamondx.svg?branch=master)](https://travis-ci.com/probonopd/font-garamondx)
+# NewG8 [![Build Status](https://travis-ci.com/probonopd/font-newg8.svg?branch=master)](https://travis-ci.com/probonopd/font-garamondx)
+
+NewG8 is an open font family based on the original designs of Claude Garamond.
+
+![](fox.png)
 
 This project makes available the font from http://mirrors.ibiblio.org/CTAN/fonts/garamondx/ in otf and ttf format. It is an improved version of GaramondNo8 by (URW)++.
 
