@@ -1,4 +1,4 @@
-# font-garamondx
+# GaramondX [![Build Status](https://travis-ci.com/probonopd/font-garamondx.svg?branch=master)](https://travis-ci.com/probonopd/font-garamondx)
 
 This project is here to make available the font from http://mirrors.ibiblio.org/CTAN/fonts/garamondx/doc/garamondx-doc.pdf in otf and ttf format. It is an improved version of GaramondNo8 by (URW)++.
 
