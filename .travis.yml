@@ -1,0 +1,21 @@
+language: minimal
+dist: bionic
+
+script:
+  - sudo apt-get -y install fontforge
+  - |2
+    FILENAMES=$(wget http://mirrors.ibiblio.org/CTAN/fonts/garamondx/type1/ -O - | grep ".pfb</" | cut -d ">" -f 3 | cut -d '"' -f 2 | sed -e 's|.pfb||g')
+    for FILENAME in $FILENAMES; do
+      wget -c "http://mirrors.ibiblio.org/CTAN/fonts/garamondx/type1/${FILENAME}.pfb"
+      fontforge -c 'f=fontforge.open("${FILENAME}"); f.generate("${FILENAME}.otf")'
+      fontforge -c 'f=fontforge.open("${FILENAME}"); f.generate("${FILENAME}.ttf")'
+    done
+
+after_success:
+  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+  - bash upload.sh *.otf *.ttf
+  
+branches:
+  except:
+    - # Do not build tags that we create when we upload to GitHub Releases
+    - /^(?i:continuous)/
