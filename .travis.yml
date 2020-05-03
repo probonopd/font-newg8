@@ -8,8 +8,8 @@ script:
     for FILENAME in $FILENAMES; do
       wget -c "http://mirrors.ibiblio.org/CTAN/fonts/garamondx/type1/${FILENAME}.pfb"
       wget -c "http://mirrors.ibiblio.org/CTAN/fonts/garamondx/afm/${FILENAME}.afm"
-      fontforge -c "f=fontforge.open(${FILENAME}.pfb); f.generate(${FILENAME}.otf)"
-      fontforge -c "f=fontforge.open(${FILENAME}.pfb); f.generate(${FILENAME}.ttf)"
+      fontforge -c "f=fontforge.open(\"${FILENAME}.pfb\"); f.generate(\"${FILENAME}.otf\")"
+      fontforge -c "f=fontforge.open(\"${FILENAME}.pfb\"); f.generate(\"${FILENAME}.ttf\")"
     done
 
 after_success:
