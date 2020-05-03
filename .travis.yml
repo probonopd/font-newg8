@@ -2,14 +2,17 @@ language: minimal
 dist: bionic
 
 script:
-  - sudo apt-get -y install fontforge
+  - sudo apt-get -y install python3-pip python3-setuptools python3-wheel # fontforge
+  - sudo pip3 install afdko
   - |2
     FILENAMES=$(wget http://mirrors.ibiblio.org/CTAN/fonts/garamondx/type1/ -O - | grep ".pfb</" | cut -d ">" -f 3 | cut -d '"' -f 2 | sed -e 's|.pfb||g')
     for FILENAME in $FILENAMES; do
       wget -c "http://mirrors.ibiblio.org/CTAN/fonts/garamondx/type1/${FILENAME}.pfb"
       wget -c "http://mirrors.ibiblio.org/CTAN/fonts/garamondx/afm/${FILENAME}.afm"
-      fontforge -c "f=fontforge.open(\"${FILENAME}.pfb\"); f.generate(\"${FILENAME}.otf\")"
-      fontforge -c "f=fontforge.open(\"${FILENAME}.pfb\"); f.generate(\"${FILENAME}.ttf\")"
+      # fontforge -c "f=fontforge.open(\"${FILENAME}.pfb\"); f.generate(\"${FILENAME}.otf\")"
+      # fontforge -c "f=fontforge.open(\"${FILENAME}.pfb\"); f.generate(\"${FILENAME}.ttf\")"
+      makeotf -f "${FILENAME}.pfb"
+      otf2ttf "${FILENAME}.otf"
     done
 
 after_success:
