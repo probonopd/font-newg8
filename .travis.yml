@@ -7,8 +7,8 @@ script:
     FILENAMES=$(wget http://mirrors.ibiblio.org/CTAN/fonts/garamondx/type1/ -O - | grep ".pfb</" | cut -d ">" -f 3 | cut -d '"' -f 2 | sed -e 's|.pfb||g')
     for FILENAME in $FILENAMES; do
       wget -c "http://mirrors.ibiblio.org/CTAN/fonts/garamondx/type1/${FILENAME}.pfb"
-      fontforge -c 'f=fontforge.open("${FILENAME}"); f.generate("${FILENAME}.otf")'
-      fontforge -c 'f=fontforge.open("${FILENAME}"); f.generate("${FILENAME}.ttf")'
+      fontforge -c "f=fontforge.open(${FILENAME}.pfb); f.generate(${FILENAME}.otf)"
+      fontforge -c "f=fontforge.open(${FILENAME}.pfb); f.generate(${FILENAME}.ttf)"
     done
 
 after_success:
