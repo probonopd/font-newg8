@@ -1,0 +1,209 @@
+Distribution and modification of the the URW GaramondNo8 fonts and their 
+derivatives are subject to the Aladdin Free Public License 
+<http://www.artifex.com/downloads/doc/Public.htm>
+
+The original URW GaramondNo8 fonts are
+  Copyright (c) 2000 URW++ Design & Development
+
+The fonts have been modified, as compared with the version
+from the original distribution site <http://www.artifex.com/downloads/>.
+Ralf Stubner fixed the broken quotedblleft character in the Italic font---
+that fix is incorporated in the version by Gael Varoquaux, from which this version was derived:
+ 
+  Copyright (c) 2009 Gael Varoquaux
+
+The current version, with name changed to NewG8 to distinguish it from other 
+versions of GaramondNo8, is
+
+  Copyright (c) 2013--2017 Michael Sharpe
+
+The TeX font metrics, virtual fonts and font definition files for NewG8,
+i.e., the files in the archive zgm.zip, may be distributed and/or modified
+under the conditions of the LaTeX Project Public License, either version 1.3 of
+this license or (at your option) any later version.  The latest version of this
+license is in http://www.latex-project.org/lppl.txt and version 1.3 or later is
+part of all distributions of LaTeX version 2003/12/01 or later. Those files and
+LaTeX support file garamondx.sty are
+
+  Copyright (c) 2013--2017 Michael Sharpe
+
+Files provided "as is", with no warranties.
+
+Current version: 1.20 (2017/05/29)
+
+Changes in version 1.20
+Corrected an error in zgm.map affecting italic small caps in T1 encoding.
+
+Changes in version 1.19
+Corrected word-spacing problems with the osf versions of garamondx.
+
+Changes in version 1.18
+Corrected an error in zgm.map affecting italic small caps. (Thanks Laurent Van Deik.)
+
+Changes in version 1.12
+Modified the sty file so that garamondx text figure styles are selected always in the \AtEndPreamble hook. (Formerly, using babel would prevent this.)
+
+Changes in version 1.11
+Reworked the encodings for small caps so that. e.g., \textsc{\i} works as expected.
+
+Changes in version 1.101
+Removed some detritus from the files.
+
+Changes in version 1.1
+1. Added fj and ffj ligatures and an LY1 encoding which includes them.
+2. Improved several oldstyle figures.
+3. Some minor kerning changes.
+
+Changes in version 1.099
+Added unsloped mu to TS1 encoded bold and regular, so siunitx produces correct form of mu.
+
+Changes in version 1.098
+Corrected zgm to add math italics, and added missing NewG8-Ita-alt-raw.tfm used in math.
+
+Changes in version 1.097
+Several changes to garamondx.sty and documentation affecting usage with babel.
+
+Changes in version 1.096
+Added an entry to zgm.map so the sups option works as expected. (The line was inadvertently omitted starting with version 1.09.)
+
+Changes in version 1.095
+Added new option babel option to be used when calling babel with a language which will change the encoding. See garamondx-doc.pdf for details.
+
+Changes in version 1.094
+Changed internal name of encoding in file zgmt1.enc and modified  map file to reflect the change.
+
+Changes in version 1.093
+1. Corrected paths in source (src) folder.
+2. Removed unnecessary \usepackage{graphicx} from garamondx.sty.
+
+Changes in version 1.092
+Corrected a number of errors with f-ligatures in small caps. (Thanks Juan Luis Varona.)
+
+Changes in version 1.091
+Fixed zgm.map, which acquired some incorrect entries under 1.09. (Thanks Herb Schulz.)
+
+Changes in version 1.09
+1. Copied into NewG8*.pfb (from GaramondNo8*.ttf) all glyphs in the T1 encoding that were not already present and modified the tfm files accordingly, so that every T1-encoded accented glyph is present without making composites.
+2. Modified the font parameters (BlueValues, etc) to avoid issues with t1lint.
+
+Changes in version 1.08
+Modified garamondx.sty to require etoolbox package and to define option osf to load choice of text figures \AtEndPreamble, so that choice does not affect math figures, which are always lining figures.
+
+Changes in version 1.07
+1. Corrected lowercase esszet in all small caps fonts.
+2. Corrected accented lower case letters in italic small caps and bold italic small caps.
+3. Modified garamondx.sty to accept options osf and osfI. The package remains compatible with former versions, but removes the need for the user to call \useosf or \useosfI. In effect,
+\usepackage[osf]{garamondx}
+loads garamondx with lining figures so that math figures are as expected, then, at the end of the preamble, changes to osf as the text figure style.
+
+Changes in version 1.06
+Added glyphs and support files for full textcomp (TS1) in all styles.
+
+Changes in version 1.05
+Corrected to some extent the behavior of commas in math mode.
+
+Changes in version 1.04
+Corrected two errors in zgm.map which were causing incorrect behavior with \includegraphics.
+
+Changes in version 1.03
+Addition of t1zgm1.fd, so that footnote markers render correctly. Also minor adjustments to metrics.
+
+Changes in version 1.02
+The xheight (\fontdimen5) for regular weight italic provided in previous versions was incorrect, leading to a wrongly placed vector math accent. This has been corrected, and the math metrics have been further refined. If using version 1.08 or later of newtx, you will see a much improved result from, eg, $\vec{x}$.
+
+Changes in version 1.01
+The original metrics for GaramondNo8 led to collisions between parentheses, brackets, braces and upper-case glyphs. These are modified in this version to reduce collisions, at the cost of increased spacing around those glyphs. The fontinst source files are now included, and a version of the documentation in French is provided, thanks to RenÃ© Fritz.
+
+Installation:
+
+This package is not part of TeXLive because its licence does not permit distribution for a fee. 
+
+Mac OS X: You may install manually (instructions below) or, more conveniently, google for getnonfreefonts, download the package and follow its instructions. There are two installer script, getnonfreefonts and getnonfreefonts-sys, the first intalling fonts in your home texmffolder, the second to a system texmf folder, the latter being highly recommended. You should always use the same method, otherwise you may mix incompatible versions, with unpredictable results.
+
+Manual methods: 
+Reread the last two sentences, as they apply also to manual installations. Additionally, doo not mix manual installation with getnonfreefronts as they have different path names in some cases. If you use one and wish to switch, you should erase all parts of any existing distribution before beginning the new installation. Instructions are provided at the end of this README.
+
+Expand garamondx.zip into an otherwise empty temporary folder, open a Terminal window
+and cd to that temporary folder.
+
+Method A (recommended): type
+
+sudo mkdir -p /usr/local/texlive/texmf-local/web2c
+sudo cp -Rfp * /usr/local/texlive/texmf-local
+sudo echo Map zgm.map >> /usr/local/texlive/texmf-local/web2c/updmap.cfg
+sudo /usr/texbin/mktexlsr
+sudo -H /usr/texbin/updmap-sys
+
+Method B: If you insist on making your font installations in your home folder, potentially making your personal installation become out of sync with updates to TeXLive, use instead
+
+(i) if you checked Update for All Users in TeXLive utility
+
+cp -Rfp * ~/Library/texmf
+
+then
+
+/usr/texbin/updmap --enable Map=zgm.map
+
+(ii) otherwise
+
+cp -Rfp * ~/Library/texmf
+
+then
+
+sudo /usr/texbin/updmap-sys --enable Map=zgm.map
+
+Linux: Very similar to Mac OS X.
+
+MikTeX: 
+
+Copy the garamondx.tds.zip to the root of the folder you use for personal additions to the TeX trees, open a command window, chdir to that folder, and type
+
+unzip garamondx.tds
+initexmf --update-fndb
+initexmf --edit-config-file updmap
+
+The latter command should open updmap.cfg in your default editor, commonly Notepad. Add the line 
+
+Map garamondx.map 
+
+to updmap.cfg, save and close. Then, in the command window, type
+
+initexmf --mkmaps
+
+You can ignore error messages that may occur here. This should result in a properly enabled garamondx.
+
+Please send comments and bug reports or suggestions for improvement to
+
+msharpe at ucsd dot edu
+
+Uninstalling garamondx on Linux and Mac OS X:
+
+Versions of garamondx prior to 1.093 installed the fontinst source in an inappropriate folder. To delete this folder from its possible locations, run the following commands.
+
+sudo /bin/rm -Rf `/usr/texbin/kpsewhich --var TEXMFLOCAL`/src
+/bin/rm -Rf `/usr/texbin/kpsewhich --var TEXMFHOME`/src
+
+All the folders containing the garamondx fonts and support files may be found by running the commands
+
+find `kpsewhich --var TEXMFLOCAL` -type d -name garamondx 2>/dev/null
+find `kpsewhich --var TEXMFHOME` -type d -name garamondx 2>/dev/null
+
+from which you may remove all folders manually. As I don't wish to be responsible for catastrophic file deletions, I'll omit the "pipe to xargs rm -Rf" parts of these commands.
+
+Finally, get disable the old map files with:
+
+sudo -H /usr/texbin/updmap-sys --disable zgm.map
+
+If you get any output from the command
+/usr/texbin/kpsewhich --all pdftex.map | grep -v '/usr/local/'
+you should also run
+/usr/texbin/updmap --disable zgm.map
+
+Path differences between the CTAN tds (used in MiKTeX) and that of getnonfreefonts:
+
+CTAN tds							getnofreefonts tds
+--------							------------------
+fonts/afm/public/garamondx/			fonts/afm/urw/garamondx/
+fonts/tfm/public/garamondx/			fonts/tfm/urw/garamondx/
+fonts/type1/public/garamondx/		fonts/type1/urw/garamondx/
+fonts/vf/public/garamondx/			fonts/vf/urw/garamondx/
