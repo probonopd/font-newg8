@@ -11,7 +11,7 @@ script:
       wget -c "http://mirrors.ibiblio.org/CTAN/fonts/garamondx/afm/${FILENAME}.afm"
       # fontforge -c "f=fontforge.open(\"${FILENAME}.pfb\"); f.generate(\"${FILENAME}.otf\")"
       # fontforge -c "f=fontforge.open(\"${FILENAME}.pfb\"); f.generate(\"${FILENAME}.ttf\")"
-      makeotf -f "${FILENAME}.pfb"
+      makeotf -r -f "${FILENAME}.pfb"
       otf2ttf "${FILENAME}.otf"
     done
 
