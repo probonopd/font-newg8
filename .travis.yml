@@ -14,10 +14,13 @@ script:
       makeotf -r -f "${FILENAME}.pfb"
       otf2ttf "${FILENAME}.otf"
     done
+  - zip -r newg8-otf.zip . -i *.otf
+  - zip -r newg8-otf.zip . -i *.ttf
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - bash upload.sh *.otf *.ttf
+  - bash upload.sh *.otf *.ttf *.zip
+
   
 branches:
   except:
