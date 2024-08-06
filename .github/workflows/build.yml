@@ -21,8 +21,8 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get -y install python3-pip python3-setuptools python3-wheel fontforge
-          sudo pip3 install afdko
+          sudo apt-get -y install python3-pip python3-setuptools python3-wheel
+          sudo pip3 install afdko fonttools
 
       - name: Download and convert fonts
         run: |
@@ -41,23 +41,25 @@ jobs:
               *) SUBFAMILY="Regular" ;;
             esac
 
-            # Create a makeotf configuration file
-            echo "FamilyName: NewG8" > makeotf_config.txt
-            echo "SubfamilyName: $SUBFAMILY" >> makeotf_config.txt
-            echo "FullName: NewG8 $SUBFAMILY" >> makeotf_config.txt
-            echo "PostScriptName: NewG8-$FILENAME" >> makeotf_config.txt
-
-            # Convert .pfb to .otf using makeotf with the configuration file
-            makeotf -r -f "${FILENAME}.pfb" -o "${FILENAME}.otf" -m makeotf_config.txt
+            # Convert .pfb to .otf using makeotf
+            makeotf -r -f "${FILENAME}.pfb" -o "${FILENAME}.otf"
 
             # Convert OTF to TTF
             otf2ttf "${FILENAME}.otf"
+
+            # Set font metadata using fonttools
+            pyftedit --set-family "NewG8" --set-subfamily "$SUBFAMILY" --set-fullname "NewG8 $SUBFAMILY" --set-postscript "NewG8-$FILENAME" "${FILENAME}.otf"
+            pyftedit --set-family "NewG8" --set-subfamily "$SUBFAMILY" --set-fullname "NewG8 $SUBFAMILY" --set-postscript "NewG8-$FILENAME" "${FILENAME}.ttf"
+
+            # Rename the generated files to include the correct metadata
+            mv "${FILENAME}.otf" "NewG8-${SUBFAMILY}.otf"
+            mv "${FILENAME}.ttf" "NewG8-${SUBFAMILY}.ttf"
           done
 
       - name: Zip the output files
         run: |
-          zip -r newg8-otf.zip . -i *.otf
-          zip -r newg8-ttf.zip . -i *.ttf
+          zip -r newg8-otf.zip . -i NewG8-*.otf
+          zip -r newg8-ttf.zip . -i NewG8-*.ttf
 
       - name: Upload ZIP files
         uses: actions/upload-artifact@v2
