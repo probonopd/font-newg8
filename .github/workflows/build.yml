@@ -42,12 +42,10 @@ jobs:
             esac
 
             # Create a makeotf configuration file
-            cat <<EOF > makeotf_config.txt
-FamilyName: NewG8
-SubfamilyName: $SUBFAMILY
-FullName: NewG8 $SUBFAMILY
-PostScriptName: NewG8-$FILENAME
-EOF
+            echo "FamilyName: NewG8" > makeotf_config.txt
+            echo "SubfamilyName: $SUBFAMILY" >> makeotf_config.txt
+            echo "FullName: NewG8 $SUBFAMILY" >> makeotf_config.txt
+            echo "PostScriptName: NewG8-$FILENAME" >> makeotf_config.txt
 
             # Convert .pfb to .otf using makeotf with the configuration file
             makeotf -r -f "${FILENAME}.pfb" -o "${FILENAME}.otf" -m makeotf_config.txt
