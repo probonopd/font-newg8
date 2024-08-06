@@ -41,8 +41,16 @@ jobs:
               *) SUBFAMILY="Regular" ;;
             esac
 
-            # Convert .pfb to .otf using makeotf with appropriate metadata
-            makeotf -r -f "${FILENAME}.pfb" -o "${FILENAME}.otf" -n "NewG8" -s "${SUBFAMILY}" -p "NewG8 ${SUBFAMILY}" -P "NewG8-${FILENAME}"
+            # Create a makeotf configuration file
+            cat <<EOF > makeotf_config.txt
+FamilyName: NewG8
+SubfamilyName: $SUBFAMILY
+FullName: NewG8 $SUBFAMILY
+PostScriptName: NewG8-$FILENAME
+EOF
+
+            # Convert .pfb to .otf using makeotf with the configuration file
+            makeotf -r -f "${FILENAME}.pfb" -o "${FILENAME}.otf" -m makeotf_config.txt
 
             # Convert OTF to TTF
             otf2ttf "${FILENAME}.otf"
